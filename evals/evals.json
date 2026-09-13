@@ -1,0 +1,26 @@
+{
+  "skill_name": "wechat-article",
+  "evals": [
+    {
+      "id": 1,
+      "name": "full-article-from-topic",
+      "prompt": "帮我写一篇公众号文章，主题是「为什么你的 AI 助手总是答非所问」，大概 800 字，配好图排好版，最后给我一个能直接在浏览器里看的预览页。",
+      "expected_output": "一个工作目录，含 article.md、images/（封面 + 3~5 张内文图）、build/preview.html。排版为微信兼容的全内联样式（无 <style>/<script>），H2 起结构，图片为代码绘制的干净图示而非低质 AI 图，且明确报出 preview.html 的绝对路径。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "typeset-given-markdown",
+      "prompt": "把 draft.md 排版成可以直接贴进微信公众号的版本，注意表格和链接在微信里都要能正常显示。",
+      "expected_output": "build/article.html（全内联样式、无 <style>/<script>）、build/preview.html。容器组件（:::summary/:::callout/timeline/steps）被正确转换而不是原样输出；外链转成上标脚注 + 文末参考链接；表格表头有底色且文字可见；中英混排有间距；加粗后的中文标点移到 </strong> 外。",
+      "files": ["evals/fixtures/draft.md"]
+    },
+    {
+      "id": 3,
+      "name": "diagram-not-ugly-ai",
+      "prompt": "这篇讲三种数据库选型的文章要配图，千万别用那种一看就是 AI 生成的、糊成一团还有乱码英文的图，我要干净能看懂的那种。",
+      "expected_output": "内文图全部为代码绘制的极简图示（render: compare/matrix/timeline/pipeline 等），中文标签准确、单一强调色、白底或统一的深底；不出现 AI 生成的低质位图。封面可用 AI 或 hero 图示。",
+      "files": ["evals/fixtures/db-article.md"]
+    }
+  ]
+}

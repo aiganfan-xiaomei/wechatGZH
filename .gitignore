@@ -1,0 +1,22 @@
+# ---- 密钥与本地配置（绝不提交）----
+config.json
+*.secret
+.env
+.env.*
+secrets.json
+
+# ---- 运行产物 ----
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+build/
+images/
+*.manifest.json
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

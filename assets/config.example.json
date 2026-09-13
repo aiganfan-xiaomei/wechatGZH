@@ -1,0 +1,68 @@
+{
+  "_readme": "复制到 ~/.workbuddy/wechat-article/config.json 后填写（也可用 WECHAT_ARTICLE_HOME 指定别的目录）。appid/secret 是发布到草稿箱必需的；只写作+排版不需要。",
+
+  "appid": "wx****************",
+  "secret": "********************************",
+  "author": "你的作者名（≤16字）",
+
+  "default_theme": "professional-clean",
+  "default_style": "minimal-line",
+
+  "image": {
+    "backend": "auto",
+    "_backend_options": "auto | custom | local | local-a1111 | local-openai | pollinations | pollinations-alt | siliconflow | cloudflare | huggingface | local-svg",
+
+    "_custom_readme": "接自己的外置生图接口——不用改代码，填这里即可。URL/headers/body 里可写占位符 {prompt} {width} {height} {seed} {negative_prompt}；密钥可写 ${ENV_VAR} 从环境变量取。详见 docs/images.md。",
+    "custom": {
+      "_example_1": "OpenAI 兼容（返回 b64_json）",
+      "enabled": false,
+      "url": "https://api.example.com/v1/images/generations",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Bearer ${MY_IMAGE_KEY}",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "model": "flux-schnell",
+        "prompt": "{prompt}",
+        "width": "{width}",
+        "height": "{height}",
+        "response_format": "b64_json"
+      },
+      "response_path": "data.0.b64_json",
+      "timeout": 150,
+
+      "_example_2": "GET 直出图片（无需 response_path）",
+      "_example_2_url": "https://api.example.com/render?prompt={prompt}&w={width}&h={height}",
+      "_notes": [
+        "response_path 用点号路径，数字段当下标：data.0.b64_json / images.0.url",
+        "不写 response_path 时自动猜常见结构；猜不准会报错并提示怎么填",
+        "响应是图片本体（PNG/JPEG/GIF/WebP/SVG）时按魔数自动识别，直接返回",
+        "图片字段是 http(s) 链接会自动下载，是 base64（含 data:image/...;base64, 前缀）会自动解码"
+      ]
+    },
+
+    "local_base": "",
+    "_local_readme": "本地/局域网模型：OpenAI 兼容 /v1/images/generations 或 A1111/Forge /sdapi/v1/txt2img。留空会自动探测常见端口。",
+    "local_kind": "auto",
+    "local_model": "",
+    "auto_detect_local": true,
+    "local_steps": 26,
+    "local_cfg": 7.0,
+
+    "pollinations_model": "flux",
+    "siliconflow_key": "",
+    "siliconflow_model": "Kwai-Kolors/Kolors",
+    "cf_account_id": "",
+    "cf_token": "",
+    "hf_token": "",
+    "hf_model": "black-forest-labs/FLUX.1-schnell",
+
+    "negative_prompt": "",
+    "request_timeout": 150,
+    "rate_limit_sleep": 16,
+    "diagram_palette": "ink-blue"
+  },
+
+  "_publish_readme": "以上为写作+配图所需。appid/secret 仅发草稿箱时才需要；appid 也可用环境变量 WECHAT_APPID，secret 用 WECHAT_SECRET。"
+}

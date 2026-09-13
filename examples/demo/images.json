@@ -1,0 +1,25 @@
+{
+  "style": "minimal-line",
+  "images": [
+    {
+      "id": "cover",
+      "role": "cover",
+      "ratio": "2.35:1",
+      "render": "hero",
+      "palette": "ink-blue",
+      "title": "用 Markdown\n写公众号",
+      "subtitle": "排版 · 配图 · 草稿箱"
+    },
+    {
+      "id": "fig-compare",
+      "role": "inline",
+      "ratio": "16:9",
+      "render": "compare",
+      "palette": "ink-teal",
+      "title": "手调 vs Markdown",
+      "left": { "title": "手调编辑器", "bullets": ["样式不可复现", "改一次重排一次"] },
+      "right": { "title": "Markdown 渲染", "bullets": ["主题一次配好", "重跑即一致"] },
+      "caption": "图 1　两种做法的对比"
+    }
+  ]
+}
